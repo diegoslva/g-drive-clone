@@ -1,0 +1,48 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "npm run development",
+    "development": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "prod": "npm run production",
+    "production": "mix --production",
+    "e2e": "cypress open",
+    "e2e-run": "cypress run"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.1.1",
+    "autoprefixer": "^10.2.6",
+    "axios": "^0.21",
+    "laravel-mix": "^6.0.6",
+    "postcss": "^8.3.5",
+    "resolve-url-loader": "^4.0.0",
+    "tailwindcss": "^2.2.4",
+    "vue-loader": "^16.2.0"
+  },
+  "dependencies": {
+    "@vue/compat": "^3.1.0",
+    "dayjs": "^1.10.6",
+    "precss": "^4.0.0",
+    "vue": "^3.1.1",
+    "vue-router": "4"
+  },
+  "name": "alternativa-caicara",
+  "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\"></a></p>",
+  "version": "1.0.0",
+  "main": "webpack.mix.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renovedigital/alternativa-caicaca.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renovedigital/alternativa-caicaca/issues"
+  },
+  "homepage": "https://github.com/renovedigital/alternativa-caicaca#readme"
+}
