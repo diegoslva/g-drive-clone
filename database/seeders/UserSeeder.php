@@ -16,8 +16,8 @@ class UserSeeder extends Seeder
     {
       DB::table('users')->insert([
         [
-          'name' => 'Diego silva (admin)',
-          'email' => 'diego@renovedigital.com.br',
+          'name' => 'Diego',
+          'email' => 'admin@admin.com',
           'cnpj' => '000000000012312',
           'password' => bcrypt('1234567'),
           'status' => 'Ativo',
@@ -25,8 +25,8 @@ class UserSeeder extends Seeder
           'updated_at' => now(),
         ],
         [
-          'name' => 'Renove (admin)',
-          'email' => 'renove@renovedigital.com.br',
+          'name' => 'User',
+          'email' => 'user@user.com.br',
           'cnpj' => '000000000001',
           'status' => 'Ativo',
           'password' => bcrypt('1234567'),
