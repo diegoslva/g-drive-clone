@@ -18,8 +18,9 @@ class UserSeeder extends Seeder
         [
           'name' => 'Diego silva (admin)',
           'email' => 'diego@renovedigital.com.br',
-          'cnpj' => '00000000000001',
+          'cnpj' => '000000000012312',
           'password' => bcrypt('1234567'),
+          'status' => 'Ativo',
           'created_at' => now(),
           'updated_at' => now(),
         ],
@@ -27,6 +28,7 @@ class UserSeeder extends Seeder
           'name' => 'Renove (admin)',
           'email' => 'renove@renovedigital.com.br',
           'cnpj' => '000000000001',
+          'status' => 'Ativo',
           'password' => bcrypt('1234567'),
           'created_at' => now(),
           'updated_at' => now(),
