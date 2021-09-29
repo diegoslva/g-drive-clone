@@ -13,7 +13,7 @@
       <div class="text-xl font-normal  max-w-full flex-initial">A senha ou e-mail incorretos </div>
     </div>
 
-    <h2 class="mt-6 text-3xl font-semibold text-gray-900">Bem-vindo <br> a plataforma g-clone drive</h2>
+    <h2 class="mt-6 text-3xl font-semibold text-gray-900">Bem-vindo <br> a plataforma da TEC2!</h2>
     <p class="mt-6 text-base font-normal text-gray-900">Preencha os campos abaixo e acesse sua conta</p>
 
     <form class="mt-8 space-y-6" @submit.prevent='onSubmit'>

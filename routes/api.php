@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     
     Route::apiResource('folders', App\Http\Controllers\Admin\FoldersController::class);
     Route::get('folders/directory/{id}', [App\Http\Controllers\Admin\FoldersController::class, 'foldersDirectory']); 
-  
+    
     Route::post('folders/media', [FoldersController::class, 'storeMedia']);
     
     Route::get('/customers/stats', [StatsController::class, 'stats']);
@@ -54,3 +54,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 });
 
 Route::post('auth/login', [AuthController::class, 'login']);
+
+// Route::post('auth/login', function()
+// {
+//   return response()->json('teste', 200);
+// });

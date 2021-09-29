@@ -24,7 +24,7 @@
           <router-link 
             @click='currentUserStore(item.row.id)'
             :to="{ name: 'show-client', params: { id: item.row.id } }"
-          >{{ item.row.fantasy_name }}</router-link>
+          >{{ item.row.company_name }}</router-link>
 
         </base-table-item>
         
@@ -34,8 +34,8 @@
         </base-table-item>
         
         <base-table-item>
-          <span class='text-gray-400 text-sm'> Município </span>
-          <p class='text-gray-600'>{{ item.row.address }}</p>
+          <span class='text-gray-400 text-sm'> E-mail </span>
+          <p class='text-gray-600'>{{ item.row.email }}</p>
         </base-table-item>
         
         <base-table-item>

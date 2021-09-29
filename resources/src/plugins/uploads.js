@@ -12,8 +12,8 @@ api.defaults.withCredentials = true;
 
 export default { 
     
-  async fileUpload(e) {
-    let files = e.target.files;
+  async fileUpload() {
+    let files = event.target.files;
     let formData = new FormData();
     
     for (var i = 0; i < files.length; i++) {

@@ -40,7 +40,7 @@ import TDrive from '@/components/TDrive.vue'
 import ProfileClient from '@/components/ProfileClient.vue'
 import { ref, onBeforeMount, provide} from 'vue'
 import TDriveActions from '@/components/TDriveActions.vue'
-import api from '@/Api/';
+import Api from '@/Api/';
 import { useStore } from '@/store/store';
 import { useRoute } from 'vue-router'
 
@@ -59,9 +59,8 @@ export default {
     const folderID = ref(null)
     const userID = ref(route.params.id)
 
-
     const { toggleStateModal } = useStore();
-
+    const { onStore } = Api();
 
 
     onBeforeMount(async () => {
@@ -75,14 +74,14 @@ export default {
     
     const submitForm = async () => {
       
-      const response = await api.onStore('folders', {
+      const response = await onStore('folders', {
         user_id: userID.value,
         parent_id: folderID.value,
         name: folderName.value
       })
       
       if(response.status === 'Success') 
-        modalTarget.value['newFolder'] = false;
+        toggleStateModal()
     }
 
 

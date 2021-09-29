@@ -34,7 +34,7 @@ mix.webpackConfig({
     }),
   ]
 });
-let url = 'g-clone.local';
+let url = 'gdrive.local';
 mix.options({
   hmrOptions: {
     host: url,

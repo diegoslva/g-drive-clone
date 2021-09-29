@@ -79,7 +79,7 @@ class FoldersController extends Controller
 
     public function storeMedia(Request $request)
     {  
-        // var_dump($request->files);die();
+
         if (request()->has('size')) {
             $this->validate(request(), [
                 'file' => 'max:' . request()->input('size') * 1024,

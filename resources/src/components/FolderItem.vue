@@ -30,9 +30,9 @@ export default {
     let { isAdmin } = useStore();
     
     onBeforeMount(async () => {
-      console.log(route.params.id);
       if(isAdmin.value) {
-        folders.value =  await onShow('folders', route.params.id)
+        console.log('as')
+        folders.value =  await onShow('admin/folders', route.params.id)
       } else {
         folders.value =  await getApi('users');
       }

@@ -37,7 +37,7 @@
 
 <script>
 import { ref, onBeforeMount} from "vue";
-import api from '@/Api/';
+import Api from '@/Api/';
 import { useStore } from '@/store/store';
 
 export default {
@@ -46,13 +46,14 @@ setup() {
     
     const folderID = ref(null);
     const { toggleStateModal }  = useStore();
+    const { onStore }  = Api();
     
     onBeforeMount(async() => {
       folderID.value = sessionStorage.getItem('refFolder')
     });
     
 
-    async function handleFileUpload(e) {
+    async function handleFileUpload() {
       let files = event.target.files;
       let formData = new FormData();
       
@@ -62,7 +63,7 @@ setup() {
       
       formData.append('folder_id', folderID.value);
 
-      const response = await api.onStore('folders/media', formData)
+      const response = await onStore('admin/folders/media', formData)
         .then(() => {
           console.log('SUCCESS!!');
         }).catch(() => {

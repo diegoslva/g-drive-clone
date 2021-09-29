@@ -11,7 +11,7 @@
 <script>
 import TDrive from '@/components/TDrive.vue'
 import { useRoute } from 'vue-router'
-import { ref, onBeforeMount, getCurrentInstance, inject} from 'vue'
+import { ref, onBeforeMount} from 'vue'
 import Api from '@/Api/';
 
 export default {

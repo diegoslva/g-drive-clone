@@ -17,13 +17,14 @@
 </template>
 
 <script>
-import api from '@/Api/';
+import Api from '@/Api/';
 export default {
   props: ['user_id'],
   
   setup(props){
+    const { onUpdate } = Api();
     const handleChangeStatus = async (status) => {
-      const response = await api.onUpdate(`users/${props.user_id}`, {'status': status})
+      const response = await onUpdate(`users/${props.user_id}`, {'status': status})
     }
     return { handleChangeStatus }
   }
