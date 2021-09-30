@@ -11,7 +11,6 @@
       <template 
         v-slot:default="item"
       >
-      
         <base-table-item>
           <router-link 
             @click='currentUserStore(item.row.id)'
@@ -24,7 +23,7 @@
           <router-link 
             @click='currentUserStore(item.row.id)'
             :to="{ name: 'show-client', params: { id: item.row.id } }"
-          >{{ item.row.company_name }}</router-link>
+          >{{ item.row.fantasy_name }}</router-link>
 
         </base-table-item>
         
@@ -34,8 +33,8 @@
         </base-table-item>
         
         <base-table-item>
-          <span class='text-gray-400 text-sm'> E-mail </span>
-          <p class='text-gray-600'>{{ item.row.email }}</p>
+          <span class='text-gray-400 text-sm'> Município </span>
+          <p class='text-gray-600'>{{ item.row.address }}</p>
         </base-table-item>
         
         <base-table-item>
@@ -55,7 +54,7 @@
 </template>
 
 <script>
-import { toRefs, reactive, onMounted, ref, defineComponent } from "vue";
+import { toRefs, reactive, onMounted, ref, defineComponent, provide} from "vue";
 import Badges from '@/components/Badges.vue'
 import Api, { Status } from '@/Api'
 import { useStore } from '@/store/store'
@@ -67,7 +66,7 @@ export default defineComponent({
   emits:['total'],
   setup(props, context) {
     let { getApi, status } = Api();
-
+    let testeid = ref(0);
     const modalTarget = ref({
       FormNewFolder: false
     });
@@ -84,7 +83,8 @@ export default defineComponent({
       data.total = response.total;
       context.emit('total', data.total)
     }) 
-    
+
+  
     return  {
       ...toRefs(data),
       modalTarget,

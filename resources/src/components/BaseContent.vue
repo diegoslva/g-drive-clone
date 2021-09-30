@@ -34,9 +34,8 @@
 
 
 <script>
-import Api from '@/Api/'
+import api from '@/Api/'
 import { reactive, onMounted } from "vue";
-
 export default {
   props: ['header'],
   setup() {
@@ -44,7 +43,7 @@ export default {
     let data = reactive({
       user: ''
     })
-    let { logout } = Api();
+    let { logout } = api();
 
     onMounted(async() => {
       data.user = window.Laravel.user

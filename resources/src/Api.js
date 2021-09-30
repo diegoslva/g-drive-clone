@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ref, provide, inject} from "vue";
+import { ref, computed, provide, inject, reactive} from "vue";
 
 let api = axios.create({
   baseUrl: "api",
@@ -152,7 +152,7 @@ export default function Api(){
   const getStatsCustomers = async (params) =>{
     if(!isAdmin)
       return;
-    const response = await api.get('admin/customers/stats', {'stats': params})
+    const response = await api.get('/admin/customers/stats', {'stats': params})
     return response.data;
   }
   

@@ -22,20 +22,12 @@ const routes = [
   {
     name: 'show-client',
     path: '/dashboard/clientes/:id',
-    component: () => import('./pages/ClientsIndex.vue'),
-    redirect: { name: "folder-list" },
-    children: [
-      {
-        path: '',
-        name: 'folder-list',
-        component: () => import('./components/FolderList.vue'),
-      },
-      {
-        name: 'folder',
-        path: '/dashboard/folders/:id',
-        component: () => import('./components/FolderItem.vue'),
-      },
-    ]
+    component: () => import('./pages/ClientsIndex.vue')
+  },
+  {
+    name: 'folder',
+    path: '/dashboard/folders/:id',
+    component: () => import('./components/FolderItem.vue'),
   },
   {
     name: 'login',

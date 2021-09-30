@@ -33,27 +33,50 @@
 
   </div>
 
+  <base-modal header="Nova pasta">
+    <form @submit.prevent='submitForm'>
+      <input
+        v-model='folderName'
+        className='appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-gray-200' 
+        placeholder="Pasta sem nome"
+      />
+      <button 
+        class='bg-indigo-800 inline-flex justify-center items-center text-white font-medium rounded-lg h-12 w-28 mr-3'
+      >Criar</button>
+      <button @click="() => toggleStateModal(true)">Cancelar</button>
+    </form>
+  </base-modal>
+
 </template>
 
 <script>
-import { ref, onBeforeMount} from "vue";
+import { ref } from "vue";
 import Api from '@/Api/';
 import { useStore } from '@/store/store';
 
 export default {
 
-setup() {
+  setup() {
     
-    const folderID = ref(null);
-    const { toggleStateModal }  = useStore();
-    const { onStore }  = Api();
-    
-    onBeforeMount(async() => {
-      folderID.value = sessionStorage.getItem('refFolder')
-    });
-    
+    const folderName = ref(null);
+    const { toggleStateModal, getFolderId, toggleUpdate} = useStore();
+    const { onStore, currentUserStore }  = Api();
+        
+    const submitForm = async () => {
+      
+      const response = await onStore('folders', {
+        user_id: currentUserStore,
+        parent_id: getFolderId.value,
+        name: folderName.value
+      })
+      
+      if(response.status === 'Success') 
+        toggleStateModal()
+        toggleUpdate(true)
 
-    async function handleFileUpload() {
+    }
+
+    async function handleFileUpload(e) {
       let files = event.target.files;
       let formData = new FormData();
       
@@ -74,11 +97,11 @@ setup() {
     
     }
     
-
     return {
-      handleFileUpload, 
-      folderID,
-      toggleStateModal
+      handleFileUpload,
+      toggleStateModal,
+      submitForm,
+      folderName
     }
   }
 

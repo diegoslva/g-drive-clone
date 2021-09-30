@@ -22,9 +22,10 @@ export default {
   props: ['user_id'],
   
   setup(props){
+
     const { onUpdate } = Api();
     const handleChangeStatus = async (status) => {
-      const response = await onUpdate(`users/${props.user_id}`, {'status': status})
+      const response = await onUpdate(`admin/users/${props.user_id}`, {'status': status})
     }
     return { handleChangeStatus }
   }

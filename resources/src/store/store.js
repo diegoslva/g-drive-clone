@@ -6,17 +6,28 @@ export const initStore = () => {
     name: ''
   });
 
+  let folder_ref  = ref(null);
+
   const stateModal = ref(false);
+  const updated = ref(false);
 
   const currentUserStore = (id)  => {
     user.id = id;
+    return id;
   }
+
+  const setFolderId = (folder_id)  => {
+    folder_ref.value = folder_id;
+    return folder_id;
+  }
+  const getFolderId = computed(() => folder_ref.value)
+  
   const getUserId = computed(() => user.id)
+
+
   
   const isAdminCheck = computed(() => {
     if(window.Laravel.isLoggedin) {
-      console.log('provide', window.Laravel.isLoggedin)
-  
       const role = window.Laravel.user.roles;
       return role === 'Admin'
     }
@@ -25,6 +36,11 @@ export const initStore = () => {
   const toggleStateModal = () => {
     return stateModal.value = !stateModal.value
   }
+  
+  const toggleUpdate = (state) => {
+    return updated.value = state
+  }
+  const updateFolderList = () => updated.value;
 
   const getStateModal = () => {
     return stateModal.value
@@ -51,10 +67,14 @@ export const initStore = () => {
   
   }
 
+  provide('setFolderId', setFolderId)
   provide('isAdminCheck', isAdminCheck)
   provide('currentUserStore', currentUserStore)
   provide('getUserId', getUserId)
+  provide('getFolderId', getFolderId)
   provide('toggleStateModal', toggleStateModal)
+  provide('toggleUpdate', toggleUpdate)
+  provide('updateFolderList', updateFolderList)
   provide('getStateModal', getStateModal)
   provide('handleFileUpload', handleFileUpload)
 
@@ -62,9 +82,13 @@ export const initStore = () => {
 export const useStore = () => ({
   isAdmin: inject('isAdminCheck'),
   currentCustomer: inject('getUserId'),
+  setFolderId: inject('setFolderId'),
   currentUserStore: inject('currentUserStore'),
   toggleStateModal: inject('toggleStateModal'),
+  toggleUpdate: inject('toggleUpdate'),
+  updateFolderList: inject('updateFolderList'),
   getStateModal: inject('getStateModal'),
-  handleFileUpload: inject('handleFileUpload')
+  handleFileUpload: inject('handleFileUpload'),
+  getFolderId: inject('getFolderId')
 });
 

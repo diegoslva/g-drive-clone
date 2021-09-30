@@ -106,11 +106,10 @@ export default({
   setup() {
     const user = ref('');
 
-    const { status, onShow } = Api();
+    const { onShow } = Api();
     const { currentCustomer } = useStore();
 
     onBeforeMount( async() => {
-      console.log(currentCustomer);
       if(status !== Status.IDLE)
         user.value = await onShow('admin/users', currentCustomer.value)
     })

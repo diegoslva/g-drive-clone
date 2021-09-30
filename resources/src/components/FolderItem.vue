@@ -12,7 +12,7 @@
 <script>
 import TDrive from '@/components/TDrive.vue'
 import { useRoute } from 'vue-router'
-import { ref, onBeforeMount} from 'vue'
+import { ref, onBeforeMount, provide} from 'vue'
 import Api, { Status } from '@/Api'
 import { useStore } from '@/store/store'
 
@@ -29,10 +29,12 @@ export default {
     
     let { isAdmin } = useStore();
     
+    provide('refFolder', route.params.id)
+    
     onBeforeMount(async () => {
+      console.log(route.params.id);
       if(isAdmin.value) {
-        console.log('as')
-        folders.value =  await onShow('admin/folders', route.params.id)
+        folders.value =  await onShow('folders', route.params.id)
       } else {
         folders.value =  await getApi('users');
       }

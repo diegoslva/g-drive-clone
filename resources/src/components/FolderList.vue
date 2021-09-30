@@ -1,7 +1,5 @@
 <template>
-  <div v-if='isLoading'>Carregando...</div>
   <t-drive
-    v-else 
     :folderID='folders.id'
     :folders='folders.children'
     :files='folders.files'
@@ -10,41 +8,39 @@
 
 <script>
 import TDrive from '@/components/TDrive.vue'
-import { useRoute } from 'vue-router'
-import { ref, onBeforeMount} from 'vue'
+import { ref, onBeforeMount, computed, watchEffect} from 'vue'
 import Api from '@/Api/';
+import { useStore } from '@/store/store';
 
 export default {
 
   components: {
     TDrive
   },
-  
-  setup() {
-    const route = useRoute();
-    let folders = ref('');
-    let isLoading = ref('');
 
-    let { getFolderDirectory } = Api();
-    
-    async function updateFolderList() {
-      folders.value =  await getFolderDirectory(route.params.id);
-      isLoading.value = false
+  props: {
+    getDirectoryUser: {
+      required: true
     }
-
+  },
+  
+  setup(props) {
+    let folders = ref('');
+    let { getFolderDirectory, } = Api();
+    let { setFolderId, updateFolderList, toggleUpdate } = useStore();
+    
     onBeforeMount(async () => {
-      folders.value =  await getFolderDirectory(route.params.id);
-      // 
-      sessionStorage.setItem('refFolder', folders.value.id);
-
-      // if(updatedFolder) {
-      //   updateFolderList();
-      // }
-      // user laravel broadcast para atualizar a lista de pasta
-
+      folders.value =  await getFolderDirectory(props.getDirectoryUser);
+      setFolderId(folders.value.id)
+    })
+    
+    watchEffect(async () => {
+      if(updateFolderList()) 
+        folders.value =  await getFolderDirectory(props.getDirectoryUser);
+        toggleUpdate(false);
     })
 
-    return { folders, isLoading}
+    return { folders }
 
   }
   
